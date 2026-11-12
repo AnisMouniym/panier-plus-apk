@@ -201,7 +201,7 @@ const localBackend = {
   },
 
   async changeMyPin(token, oldPin, newPin) {
-    const user = requireSession(token);
+    const user = requireAdmin(token);
     if (String(user.PIN) !== String(oldPin)) {
       throw new Error('Ancien PIN incorrect.');
     }
@@ -756,31 +756,35 @@ async function historyView() {
 }
 
 function profileView() {
+  const isAdmin = state.user.role === 'ADMIN';
   $('view').innerHTML = `
     <div class="eyebrow">Mon compte</div>
     <h1>Profil</h1>
     <section class="card">
       <h2>${escapeHtml(state.user.name)}</h2>
-      <p class="muted small">Rôle : ${state.user.role === 'ADMIN' ? 'Administrateur' : 'Salarié'}</p>
+      <p class="muted small">Rôle : ${isAdmin ? 'Administrateur' : 'Salarié'}</p>
     </section>
+    ${isAdmin ? `
     <section class="card">
       <h2>Modifier mon PIN</h2>
       <div class="field"><label>Ancien PIN</label><input id="oldPin" type="password" inputmode="numeric" maxlength="6"></div>
       <div class="field"><label>Nouveau PIN (6 chiffres)</label><input id="newPin" type="password" inputmode="numeric" maxlength="6"></div>
       <button class="btn btn-primary btn-block" id="changePin">Mettre à jour</button>
-    </section>
+    </section>` : ''}
     <button class="btn btn-danger btn-block" id="logout">Se déconnecter</button>
   `;
-  $('changePin').onclick = async () => {
-    try {
-      await call('changeMyPin', state.token, $('oldPin').value, $('newPin').value);
-      toast('PIN mis à jour.');
-      $('oldPin').value = '';
-      $('newPin').value = '';
-    } catch (e) {
-      toast(e.message);
-    }
-  };
+  if (isAdmin) {
+    $('changePin').onclick = async () => {
+      try {
+        await call('changeMyPin', state.token, $('oldPin').value, $('newPin').value);
+        toast('PIN mis à jour.');
+        $('oldPin').value = '';
+        $('newPin').value = '';
+      } catch (e) {
+        toast(e.message);
+      }
+    };
+  }
   $('logout').onclick = async () => {
     await call('logout', state.token);
     sessionStorage.removeItem('pp_token');
@@ -790,7 +794,6 @@ function profileView() {
     renderLogin();
   };
 }
-
 async function adminView() {
   if (state.user.role !== 'ADMIN') {
     state.route = 'home';
