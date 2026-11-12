@@ -15,7 +15,7 @@ function initLocalDB() {
         IDEmploye: 'ADMIN01',
         Nom: 'PANIER+',
         Prenom: 'Administrateur',
-        PIN: '482916',
+        PIN: '123456',
         Role: 'ADMIN',
         Actif: true
       }
