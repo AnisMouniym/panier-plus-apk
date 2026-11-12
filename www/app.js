@@ -599,76 +599,65 @@ function homeView() {
   $('openCart').onclick = () => { state.route = 'cart'; render(); };
 }
 
-function categories() {
-  return ['Tous', ...new Set(state.products.map(p => p.category))];
-}
-
-function getProductIcon(name, category) {
-  const text = String(name + ' ' + (category || '')).toLowerCase();
-  if (text.includes('eau')) return '💧';
-  if (text.includes('cookie')) return '🍪';
-  if (text.includes('café') || text.includes('cafe')) return '☕';
-  if (text.includes('coca') || text.includes('soda') || text.includes('boisson')) return '🥤';
-  if (text.includes('jus')) return '🧃';
-  if (text.includes('chocolat') || text.includes('barre') || text.includes('snack')) return '🍫';
-  if (text.includes('salade')) return '🥗';
-  if (text.includes('fruit') || text.includes('pomme') || text.includes('banane')) return '🍎';
-  if (text.includes('chips')) return '🥔';
-  if (text.includes('pizza')) return '🍕';
-  if (text.includes('croissant') || text.includes('viennoiserie')) return '🥐';
-  if (text.includes('glace')) return '🍦';
-  if (text.includes('thé') || text.includes('tea')) return '🍵';
-  return '🥪';
-}
-
-function productCard(p) {
-  const q = state.cart[p.id] || 0;
-  const icon = getProductIcon(p.name, p.category);
-  const fallbackBox = `<div style="height:115px;background:var(--green-soft);display:grid;place-items:center;font-size:42px">${icon}</div>`;
-
-  return `<article class="card product">
-    ${p.image
-      ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.outerHTML='${fallbackBox.replace(/"/g, '&quot;')}'">`
-      : fallbackBox
-    }
-    <div class="product-info">
-      <div class="product-name">${escapeHtml(p.name)}</div>
-      <div class="product-category">${escapeHtml(p.category)}</div>
-      <div class="row-between">
-        <span class="small muted">${q ? 'Dans le panier' : ''}</span>
-        <div class="qty-control">
-          <button data-minus="${p.id}" aria-label="Retirer">−</button>
-          <strong>${q}</strong>
-          <button data-plus="${p.id}" aria-label="Ajouter">+</button>
-        </div>
-      </div>
-    </div>
-  </article>`;
-}
-
 function catalogView() {
-  const list = state.products.filter(
-    p => (state.category === 'Tous' || p.category === state.category) && p.name.toLowerCase().includes(state.search.toLowerCase())
-  );
+  const cats = [...new Set(state.products.map(p => p.category))];
+  const totalCart = Object.values(state.cart).reduce((a, b) => a + b, 0);
+
   $('view').innerHTML = `
     <div class="eyebrow">Catalogue</div>
     <h1>Compose ton panier</h1>
-    <p class="muted">Sélectionne les produits et ajuste les quantités.</p>
-    <div class="search"><input id="productSearch" placeholder="Rechercher un produit…" value="${escapeHtml(state.search)}"></div>
-    <div class="chips">${categories().map(c => `<button class="chip ${state.category === c ? 'active' : ''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}</div>
-    <div class="product-grid">${list.length ? list.map(productCard).join('') : '<div class="empty">Aucun produit trouvé.</div>'}</div>
+    <p class="muted">Choisis tes produits dans chaque catégorie.</p>
+
+    ${cats.length ? cats.map(cat => {
+      const catProducts = state.products.filter(p => p.category === cat);
+      const selectedInCat = catProducts.filter(p => (state.cart[p.id] || 0) > 0);
+      const catCount = selectedInCat.reduce((sum, p) => sum + state.cart[p.id], 0);
+
+      return `
+        <section class="card">
+          <div class="row-between">
+            <h2 style="margin:0">${escapeHtml(cat)}</h2>
+            ${catCount ? `<span class="badge">${catCount} sélectionné(s)</span>` : ''}
+          </div>
+
+          <div class="field" style="margin-bottom:${selectedInCat.length ? '10px' : '0'}">
+            <select class="cat-select" style="font-size:16px">
+              <option value="">— Choisir un produit (${escapeHtml(cat)}) —</option>
+              ${catProducts.map(p => `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`).join('')}
+            </select>
+          </div>
+
+          ${selectedInCat.map(p => `
+            <div class="cart-line">
+              <div>
+                <strong>${escapeHtml(p.name)}</strong>
+                ${p.description ? `<div class="muted small">${escapeHtml(p.description)}</div>` : ''}
+              </div>
+              <div class="qty-control">
+                <button data-minus="${escapeHtml(p.id)}" aria-label="Retirer">−</button>
+                <strong>${state.cart[p.id]}</strong>
+                <button data-plus="${escapeHtml(p.id)}" aria-label="Ajouter">+</button>
+              </div>
+            </div>
+          `).join('')}
+        </section>
+      `;
+    }).join('') : '<div class="card empty">Aucun produit disponible.</div>'}
+
     <div style="position:sticky;bottom:78px;margin-top:16px">
-      <button class="btn btn-primary btn-block" id="viewCart">Voir mon panier (${Object.values(state.cart).reduce((a, b) => a + b, 0)}) →</button>
+      <button class="btn btn-primary btn-block" id="viewCart">Voir mon panier (${totalCart}) →</button>
     </div>
   `;
-  $('productSearch').oninput = e => {
-    state.search = e.target.value;
-    catalogView();
-    const i = $('productSearch');
-    i.focus();
-    i.setSelectionRange(i.value.length, i.value.length);
-  };
-  document.querySelectorAll('[data-cat]').forEach(b => b.onclick = () => { state.category = b.dataset.cat; catalogView(); });
+
+  document.querySelectorAll('.cat-select').forEach(sel => {
+    sel.onchange = e => {
+      const id = e.target.value;
+      if (!id) return;
+      state.cart[id] = Math.min(99, (state.cart[id] || 0) + 1);
+      catalogView();
+    };
+  });
+
   document.querySelectorAll('[data-plus]').forEach(b => b.onclick = () => changeQty(b.dataset.plus, 1));
   document.querySelectorAll('[data-minus]').forEach(b => b.onclick = () => changeQty(b.dataset.minus, -1));
   $('viewCart').onclick = () => { state.route = 'cart'; render(); };
