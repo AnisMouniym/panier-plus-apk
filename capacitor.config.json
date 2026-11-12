@@ -1,0 +1,8 @@
+{
+  "appId": "com.panierplus.borne",
+  "appName": "Panier Plus",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
