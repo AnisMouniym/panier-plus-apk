@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PANIER+</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">+</span>
+        <span>PANIER<span class="brand-light">PLUS</span></span>
+      </div>
+      <div class="top-actions">
+        <button id="themeToggle" class="icon-button" aria-label="Changer de thème" title="Changer de thème">🌓</button>
+        <span id="userBadge" class="user-badge hidden"></span>
+        <button id="headerLogoutBtn" class="icon-button hidden" aria-label="Déconnexion" title="Se déconnecter">⎋</button>
+      </div>
+    </header>
 
+    <main id="view" class="view">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Chargement de PANIER+...</p>
+      </div>
+    </main>
+
+    <nav id="bottomNav" class="bottom-nav hidden"></nav>
+  </div>
+
+  <template id="loginTemplate">
+    <div class="login-wrap">
+      <div class="login-logo">
+        <div class="brand">
+          <span class="brand-mark">+</span>
+          <span>PANIER<span class="brand-light">PLUS</span></span>
+        </div>
+        <div class="muted">Déclaration de panier repas</div>
+      </div>
+
+      <section class="card">
+        <h2>Connexion</h2>
+        <p class="muted small">Saisis ton code PIN personnel.</p>
+
+        <form id="loginForm">
+          <div class="pin-display">
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+          </div>
+
+          <input type="hidden" id="pin" maxlength="6" required>
+          <div id="loginError" class="notice error hidden"></div>
+
+          <div id="loginLoading" class="hidden" style="text-align:center;margin:10px 0;">
+            <div class="spinner" style="width:24px;height:24px;border-width:3px;display:inline-block;vertical-align:middle;"></div>
+            <span style="margin-left:8px;color:var(--muted);font-size:14px;">Vérification en cours...</span>
+          </div>
+
+          <div class="pin-pad">
+            <button type="button" class="pin-btn" onclick="addPin('1')">1</button>
+            <button type="button" class="pin-btn" onclick="addPin('2')">2</button>
+            <button type="button" class="pin-btn" onclick="addPin('3')">3</button>
+            <button type="button" class="pin-btn" onclick="addPin('4')">4</button>
+            <button type="button" class="pin-btn" onclick="addPin('5')">5</button>
+            <button type="button" class="pin-btn" onclick="addPin('6')">6</button>
+            <button type="button" class="pin-btn" onclick="addPin('7')">7</button>
+            <button type="button" class="pin-btn" onclick="addPin('8')">8</button>
+            <button type="button" class="pin-btn" onclick="addPin('9')">9</button>
+            <button type="button" class="pin-btn pin-action" onclick="clearPin()">C</button>
+            <button type="button" class="pin-btn" onclick="addPin('0')">0</button>
+            <button type="button" class="pin-btn pin-action" onclick="delPin()">⌫</button>
+          </div>
+
+          <button type="submit" id="submitLoginBtn" class="hidden">Valider</button>
+        </form>
+      </section>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
