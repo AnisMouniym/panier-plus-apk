@@ -1,5 +1,4 @@
-# **PANIER+** — Application déclaration de panier repas (100 % Hors-Ligne)
-
+# **PANIER+** — Application déclaration de panier repas
 **PANIER+** est une application Android qui permet aux salariés d'enregistrer rapidement leur panier repas quotidien et aux administrateurs de piloter les consommations en local. Elle est autonome conçue pour fonctionner sur une tablette centrale en mode borne tactile, sans aucune connexion Internet.
 
 ## ✨ Fonctionnalités principales
