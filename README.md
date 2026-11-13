@@ -33,13 +33,13 @@ Sécurité du PIN : Seul l'administrateur peut modifier son propre code PIN depu
 
 L'application repose sur une architecture légère et autonome :
 
-Interface : ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white), ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css&logoColor=white) et ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black). 
+Interface : ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black).
 
 Base de données locale : Stockage persistant directement dans la mémoire privée de l'application sur la tablette via le localStorage de la WebView Android (capacité d'environ 15 000 à 20 000 déclarations).
 
-Empaquetage Android : Généré avec Capacitor (com.panierplus.borne).
+Empaquetage Android : Généré avec **Capacitor** (com.panierplus.borne).
 
-Compilation Cloud : Automatisation complète de la création du fichier .apk via GitHub Actions (aucun SDK Android ni outil lourd à installer sur poste de travail).
+Compilation Cloud : Automatisation complète de la création du fichier **.apk** via GitHub Actions (aucun SDK Android ni outil lourd à installer sur poste de travail).
 
 ## 📁 Structure du dépôt
 
@@ -73,9 +73,9 @@ Au tout premier démarrage sur la tablette, un compte administrateur par défaut
 
 Code PIN par défaut : **123456**
 
-Important : Dès la première ouverture, connectez-vous avec 123456, rendez-vous dans l'onglet Profil et remplacez ce code par un PIN administrateur personnalisé.
+Important : Dès la première ouverture, connectez-vous avec **123456**, rendez-vous dans l'onglet Profil et remplacez ce code par un PIN administrateur personnalisé.
 
-3. Tester l'interface sur navigateur (Aperçu Web)
+3. Tester l'interface sur navigateur
 
 Il est possible de visualiser et tester l'interface directement depuis un navigateur via [GitHub Pages (/www/)](https://anismouniym.github.io/panier-plus-apk/www/), en activant l'émulation tablette dans les outils de développement (`F12` puis `Ctrl + Shift + M`).
 
