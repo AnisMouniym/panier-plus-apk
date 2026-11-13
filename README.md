@@ -43,6 +43,7 @@ L'application repose sur une architecture légère et autonome.
 
 ## 📁 Structure du dépôt
 
+```text
 panier-plus-apk/
 ├── .github/
 │   └── workflows/
@@ -53,7 +54,7 @@ panier-plus-apk/
 │   └── app.js                  - Base de données locale, règles métier et vues dynamiques
 ├── capacitor.config.json       - Configuration de l'application Android Capacitor
 └── package.json                - Dépendances Capacitor
-
+```
 
 ## 🚀 Installation & Première utilisation
 
