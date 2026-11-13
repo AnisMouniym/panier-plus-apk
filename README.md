@@ -1,10 +1,10 @@
-#**PANIER+** — Application déclaration de panier repas (100 % Hors-Ligne)
+# **PANIER+** — Application déclaration de panier repas (100 % Hors-Ligne)
 
 **PANIER+** est une application Android qui permet aux salariés d'enregistrer rapidement leur panier repas quotidien et aux administrateurs de piloter les consommations en local. Elle est autonome conçue pour fonctionner sur une tablette centrale en mode borne tactile, sans aucune connexion Internet.
 
-##✨ Fonctionnalités principales
+## ✨ Fonctionnalités principales
 
-##👤 Espace Salarié
+## 👤 Espace Salarié
 
 Connexion rapide par code PIN : Authentification sécurisée à 6 chiffres via un pavé numérique tactile (sans identifiant à saisir).
 
@@ -16,7 +16,7 @@ Historique personnel : Consultation des déclarations passées.
 
 Confort visuel : Bascule instantanée entre le thème clair et le thème sombre (🌓).
 
-##⚙️ Espace Administration
+## ⚙️ Espace Administration
 
 Tableau de bord : Suivi en temps réel du nombre de salariés actifs, de produits disponibles, des déclarations du jour et du total cumulé.
 
@@ -30,7 +30,7 @@ Purge de l'historique : Suppression sécurisée (confirmation en deux étapes) d
 
 Sécurité du PIN : Seul l'administrateur peut modifier son propre code PIN depuis son profil.
 
-##🏗️ Architecture & Fonctionnement Hors-Ligne
+## 🏗️ Architecture & Fonctionnement Hors-Ligne
 
 L'application repose sur une architecture légère et autonome :
 
@@ -42,7 +42,7 @@ Empaquetage Android : Généré avec Capacitor (com.panierplus.borne).
 
 Compilation Cloud : Automatisation complète de la création du fichier .apk via GitHub Actions (aucun SDK Android ni outil lourd à installer sur poste de travail).
 
-##📁 Structure du dépôt
+## 📁 Structure du dépôt
 
 panier-plus-apk/
 ├── .github/
@@ -56,7 +56,7 @@ panier-plus-apk/
 └── package.json                # Dépendances Capacitor
 
 
-##🚀 Installation & Première utilisation
+## 🚀 Installation & Première utilisation
 
 1. Récupérer le fichier **.apk**
 
@@ -80,7 +80,7 @@ Important : Dès la première ouverture, connectez-vous avec 123456, rendez-vous
 
 Il est possible de visualiser et tester l'interface directement depuis un navigateur via [GitHub Pages (/www/)](https://anismouniym.github.io/panier-plus-apk/www/), en activant l'émulation tablette dans les outils de développement (`F12` puis `Ctrl + Shift + M`).
 
-##🛡️ Bonnes pratiques d'exploitation
+## 🛡️ Bonnes pratiques d'exploitation
 
 Sauvegarde régulière : Les données étant stockées uniquement dans la mémoire de la tablette, pensez à effectuer un Export CSV chaque semaine ou chaque mois depuis l'onglet Admin, puis à archiver le fichier sur un ordinateur ou un serveur sécurisé.
 
