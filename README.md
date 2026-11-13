@@ -5,13 +5,13 @@
 
 ## 👤 Espace Salarié
 
-Connexion rapide par code PIN : Authentification sécurisée à 6 chiffres via un pavé numérique tactile (sans identifiant à saisir).
+**Connexion rapide par code PIN :** Authentification sécurisée à 6 chiffres via un pavé numérique tactile (sans identifiant à saisir).
 
-Catalogue par catégories : Sélection intuitive des produits via des listes déroulantes par catégorie, avec ajustement tactile des quantités (− / +).
+**Catalogue par catégories :** Sélection intuitive des produits via des listes déroulantes par catégorie, avec ajustement tactile des quantités (− / +).
 
-Règle métier intégrée : Limitation automatique à une déclaration validée par jour et par salarié.
+**Règle métier intégrée :** Limitation automatique à une déclaration validée par jour et par salarié.
 
-Historique personnel : Consultation des déclarations passées.
+**Historique personnel :** Consultation des déclarations passées.
 
 Confort visuel : Bascule instantanée entre le thème clair et le thème sombre (🌓).
 
