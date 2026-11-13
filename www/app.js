@@ -372,6 +372,12 @@ const localBackend = {
 
     const csvString = '\uFEFF' + rows.map(r => r.join(';')).join('\n');
     return btoa(unescape(encodeURIComponent(csvString)));
+  },
+
+   async adminClearDeclarations(token) {
+    requireAdmin(token);
+    saveTable(DB_KEYS.DECLARATIONS, []);
+    return true;
   }
 };
 
@@ -934,8 +940,36 @@ async function adminView() {
           ${a.length ? a.map(d => `<div class="cart-line"><div><strong>${escapeHtml(d.employee)}</strong><div class="small muted">${moneyDate(d.date)}</div><div class="small">${d.items.map(i => `${escapeHtml(i.name)} × ${i.quantity}`).join(' · ')}</div></div></div>`).join('') : '<p class="empty">Aucune déclaration.</p>'}
         </section>
         <button class="btn btn-secondary btn-block" id="exportCsv">Exporter en CSV</button>
+        ${a.length ? `
+          <div style="height:10px"></div>
+          <button class="btn btn-danger btn-block" id="clearHistory">Supprimer tout l’historique</button>
+        ` : ''}
       `;
       $('exportCsv').onclick = exportCsv;
+
+      if ($('clearHistory')) {
+        let confirmStep = false;
+        $('clearHistory').onclick = async () => {
+          if (!confirmStep) {
+            confirmStep = true;
+            $('clearHistory').textContent = '⚠️ Cliquer à nouveau pour confirmer la suppression';
+            setTimeout(() => {
+              if ($('clearHistory')) {
+                confirmStep = false;
+                $('clearHistory').textContent = 'Supprimer tout l’historique';
+              }
+            }, 4000);
+            return;
+          }
+          try {
+            await call('adminClearDeclarations', state.token);
+            toast('Historique supprimé.');
+            adminView();
+          } catch (e) {
+            toast(e.message);
+          }
+        };
+      }
     }
   } catch (e) {
     $('adminContent').innerHTML = `<div class="notice error">${escapeHtml(e.message)}</div>`;
