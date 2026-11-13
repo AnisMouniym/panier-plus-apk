@@ -47,13 +47,13 @@ L'application repose sur une architecture légère et autonome.
 panier-plus-apk/
 ├── .github/
 │   └── workflows/
-│       └── build-apk.yml       - Workflow GitHub Actions pour compiler l'APK Android
+│       └── build-apk.yml       # Workflow GitHub Actions pour compiler l'APK Android
 ├── www/
-│   ├── index.html              - Structure principale et pavé numérique de connexion
-│   ├── style.css               - Feuille de styles tactile (thèmes clair et sombre)
-│   └── app.js                  - Base de données locale, règles métier et vues dynamiques
-├── capacitor.config.json       - Configuration de l'application Android Capacitor
-└── package.json                - Dépendances Capacitor
+│   ├── index.html              # Structure principale et pavé numérique de connexion
+│   ├── style.css               # Feuille de styles tactile (thèmes clair et sombre)
+│   └── app.js                  # Base de données locale, règles métier et vues dynamiques
+├── capacitor.config.json       # Configuration de l'application Android Capacitor
+└── package.json                # Dépendances Capacitor
 ```
 
 ## 🚀 Installation & Première utilisation
