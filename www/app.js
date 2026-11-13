@@ -813,7 +813,7 @@ async function adminView() {
           <div class="card"><div class="stat">${s.activeProducts}</div><div class="stat-label">Produits actifs</div></div>
           <div class="card"><div class="stat">${s.today}</div><div class="stat-label">Aujourd’hui</div></div>
         </div>
-        <button class="btn btn-secondary btn-block" id="exportCsv">Exporter les déclarations (CSV anonymisé)</button>
+        <button class="btn btn-secondary btn-block" id="exportCsv">Exporter les déclarations en Excel</button>
       `;
       $('exportCsv').onclick = exportCsv;
     }
@@ -939,7 +939,7 @@ async function adminView() {
           <h2>Dernières déclarations</h2>
           ${a.length ? a.map(d => `<div class="cart-line"><div><strong>${escapeHtml(d.employee)}</strong><div class="small muted">${moneyDate(d.date)}</div><div class="small">${d.items.map(i => `${escapeHtml(i.name)} × ${i.quantity}`).join(' · ')}</div></div></div>`).join('') : '<p class="empty">Aucune déclaration.</p>'}
         </section>
-        <button class="btn btn-secondary btn-block" id="exportCsv">Exporter en CSV</button>
+        <button class="btn btn-secondary btn-block" id="exportCsv">Exporter en Excel</button>
         ${a.length ? `
           <div style="height:10px"></div>
           <button class="btn btn-danger btn-block" id="clearHistory">Supprimer tout l’historique</button>
