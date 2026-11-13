@@ -3,7 +3,7 @@
 
 ## ✨ Fonctionnalités principales
 
-## 👤 Espace Salarié
+### 👤 Espace Salarié
 
 **Connexion rapide par code PIN :** Authentification sécurisée à 6 chiffres via un pavé numérique tactile (sans identifiant à saisir).
 
@@ -13,21 +13,21 @@
 
 **Historique personnel :** Consultation des déclarations passées.
 
-Confort visuel : Bascule instantanée entre le thème clair et le thème sombre (🌓).
+**Confort visuel :** Bascule instantanée entre le thème clair et le thème sombre (🌓).
 
-## ⚙️ Espace Administration
+### ⚙️ Espace Administration
 
-Tableau de bord : Suivi en temps réel du nombre de salariés actifs, de produits disponibles, des déclarations du jour et du total cumulé.
+**Tableau de bord :** Suivi en temps réel du nombre de salariés actifs, de produits disponibles, des déclarations du jour et du total cumulé.
 
-Gestion des salariés : Création de comptes (Prénom, Nom, PIN à 6 chiffres) et activation/désactivation en un clic.
+**Gestion des salariés :** Création de comptes (Prénom, Nom, PIN à 6 chiffres) et activation/désactivation en un clic.
 
-Gestion du catalogue : Ajout et modification des produits (nom, catégorie, unité, description, image facultative et ordre d'affichage).
+**Gestion du catalogue :** Ajout et modification des produits (nom, catégorie, unité, description, image facultative et ordre d'affichage).
 
-Export CSV anonymisé : Génération d'un fichier .csv (encodé UTF-8 avec séparateur ;, directement compatible avec Microsoft Excel) excluant les noms et identifiants des salariés.
+**Export CSV anonymisé :** Génération d'un fichier .csv (encodé UTF-8 avec séparateur ;, directement compatible avec Microsoft Excel) excluant les noms et identifiants des salariés.
 
-Purge de l'historique : Suppression sécurisée (confirmation en deux étapes) de l'historique local après exportation pour libérer de l'espace.
+**Purge de l'historique :** Suppression sécurisée (confirmation en deux étapes) de l'historique local après exportation pour libérer de l'espace.
 
-Sécurité du PIN : Seul l'administrateur peut modifier son propre code PIN depuis son profil.
+**Sécurité du PIN :** Seul l'administrateur peut modifier son propre code PIN depuis son profil.
 
 ## 🏗️ Architecture & Fonctionnement Hors-Ligne
 
